@@ -151,7 +151,7 @@ matrix_tbl.add_autoindex('Nr.')
 print('Matrix table')
 print(matrix_tbl)
 
-plt.figure(3)
+plt.figure(4)
 plt.plot(sequence2, opd, color = 'red')
 plt.scatter(sequence2, opd, color = 'red')
 plt.title('Matrix algorithm')
@@ -180,10 +180,47 @@ binet_tbl.add_autoindex('Nr.')
 print('Binet table')
 print(binet_tbl)
 
-plt.figure(3)
+plt.figure(5)
 plt.plot(sequence2, opd, color = 'purple')
 plt.scatter(sequence2, opd, color = 'purple')
 plt.title('Binet algorithm')
 plt.xlabel('n-th fibonacci number')
 plt.ylabel('Execution time in s')
 plt.show()
+
+# Fibonacci - exp fib method
+def exponentiation_fib(n):
+    if n < 2:
+        return n
+    i = n - 1
+    a, b = 1, 0
+    c, d = 0, 1
+    while i > 0:
+        if i % 2 == 1:
+            a, b = d * b + c * a, d * (b + a) + c * b
+        c, d = c ** 2 + d ** 2, d * (2 * c + d)
+        i = i >> 1
+    return a + b
+
+exp = []
+
+start = time.time()
+for i in sequence2:
+    exponentiation_fib(i)
+    end = time.time()
+    exp.append(round(end - start, 8))
+    
+ologn_tbl = PrettyTable(sequence2)
+ologn_tbl.add_row(exp)
+ologn_tbl.add_autoindex('Nr.')
+print('Exponentiation table')
+print(ologn_tbl)
+
+plt.figure(6)
+plt.plot(sequence2, exp, color = 'pink')
+plt.scatter(sequence2, exp, color = 'pink')
+plt.title('Exponentiation method')
+plt.xlabel('n-th fibonacci number')
+plt.ylabel('Execution time in s')
+plt.show()
+
