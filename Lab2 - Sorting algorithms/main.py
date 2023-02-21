@@ -10,7 +10,7 @@ from prettytable import PrettyTable
 
 random.seed(10)
 
-start = - 500000
+start = -500000
 end = 500000
 
 def plot_sorting_performance():
@@ -19,35 +19,36 @@ def plot_sorting_performance():
     mergesort_times = []
     heapsort_times = []
     combsort_times = []
-    for size in sizes:
-        arr = [random.randint(start, end) for _ in range(size)]
-        start_time = time.time()
+    for i in sizes:
+        arr = [random.randint(start, end) for _ in range(i)]
+        start_time = time.perf_counter()
         quick_sort(arr)
-        end_time = time.time()
+        end_time = time.perf_counter()
         quicksort_times.append(round(end_time - start_time, 5))
         
-        arr = [random.randint(start, end) for _ in range(size)]
-        start_time = time.time()
+        arr = [random.randint(start, end) for _ in range(i)]
+        start_time = time.perf_counter()
         merge_sort(arr)
-        end_time = time.time()
+        end_time = time.perf_counter()
         mergesort_times.append(round(end_time - start_time, 5))
         
-        arr = [random.randint(start, end) for _ in range(size)]
-        start_time = time.time()
+        arr = [random.randint(start, end) for _ in range(i)]
+        start_time = time.perf_counter()
         heap_sort(arr)
-        end_time = time.time()
+        end_time = time.perf_counter()
         heapsort_times.append(round(end_time - start_time, 5))
         
-        arr = [random.randint(start, end) for _ in range(size)]
-        start_time = time.time()
+        arr = [random.randint(start, end) for _ in range(i)]
+        start_time = time.perf_counter()
         comb_sort(arr)
-        end_time = time.time()
+        end_time = time.perf_counter()
         combsort_times.append(round(end_time - start_time, 5))
     
     plt.plot(sizes, quicksort_times,label="quickSort", color = 'red')
     plt.plot(sizes, mergesort_times, label="mergeSort",color = 'blue')
     plt.plot(sizes, heapsort_times, label="heapSort",color = 'green')
     plt.plot(sizes, combsort_times, label="combSort",color = 'pink')
+    plt.xlabel('Size of arrays')
     plt.ylabel('Time (s)')
     plt.title('Sorting Algorithm Performance')
     plt.legend()
@@ -65,5 +66,6 @@ def plot_sorting_performance():
     print(myTable)
     
 plot_sorting_performance()
+
 
 
