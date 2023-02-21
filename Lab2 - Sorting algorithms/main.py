@@ -52,6 +52,7 @@ def plot_sorting_performance():
     plt.ylabel('Time (s)')
     plt.title('Sorting Algorithm Performance')
     plt.legend()
+    plt.grid()
     plt.show()
     
     myTable = PrettyTable(["Name", '10', '100', '1000', '10 000', '50 000', '100 000', '250 000', '500 000', '750 000'])
