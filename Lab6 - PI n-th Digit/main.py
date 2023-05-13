@@ -9,7 +9,7 @@ from prettytable import PrettyTable
 
 random.seed(10)
 
-def plot_sorting_performance():
+def plot_algorithms_performance():
     sizes = [10, 100, 1000, 1500, 2000, 2500, 3000]
     bbp_times = []
     gauss_times = []
@@ -49,6 +49,6 @@ def plot_sorting_performance():
                      spigot_times[5], spigot_times[6]])
     print(myTable)
     
-plot_sorting_performance()
+plot_algorithms_performance()
 
 
