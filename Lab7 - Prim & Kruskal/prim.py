@@ -1,21 +1,29 @@
+import heapq
+
 def prim_algorithm(graph):
     start_node = list(graph.nodes())[0]
     selected_nodes = {start_node}
-    selected_edges = []
+    minimum_spanning_tree = []
+    pq = []
+
+    for neighbor in graph.neighbors(start_node):
+        weight = graph[start_node][neighbor]['weight']
+        heapq.heappush(pq, (weight, start_node, neighbor))
+
     while len(selected_nodes) < len(graph.nodes()):
-        min_weight = float('inf')
-        min_edge = None
+        min_weight, node, neighbor = heapq.heappop(pq)
 
-        for node in selected_nodes:
-            for neighbor in graph.neighbors(node):
-                if neighbor not in selected_nodes:
-                    weight = graph[node][neighbor]['weight']
-                    if weight < min_weight:
-                        min_weight = weight
-                        min_edge = (node, neighbor)
+        if neighbor in selected_nodes:
+            continue
 
-        selected_edges.append(min_edge)
+        minimum_spanning_tree.append((node, neighbor))
+        selected_nodes.add(neighbor)
 
-        selected_nodes.add(min_edge[1])
-    return selected_edges
+        for next_neighbor in graph.neighbors(neighbor):
+            if next_neighbor not in selected_nodes:
+                weight = graph[neighbor][next_neighbor]['weight']
+                heapq.heappush(pq, (weight, neighbor, next_neighbor))
+
+    return minimum_spanning_tree
+
 
