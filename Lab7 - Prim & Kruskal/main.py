@@ -6,7 +6,7 @@ from prim import prim_algorithm
 from kruskal import kruskal_algorithm
 from graph import generate_graph
 
-sizes = [10, 100, 150, 200, 250, 300, 400, 500]
+sizes = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
 prim_time = []
 kruskal_time = []
 
@@ -24,11 +24,11 @@ for size in sizes:
     kruskal_algorithm(graph)
     result = time.perf_counter() - start_time
     kruskal_time.append(round(result, 5))
-
+    
 def plot_results():
-    table = PrettyTable(['Name/Nodes', '10', '100', '150', '200', '250', '300', '400', '500'])
-    table.add_row(['Prim', prim_time[0], prim_time[1], prim_time[2], prim_time[3], prim_time[4], prim_time[5], prim_time[6], prim_time[7]])
-    table.add_row(['Kruskal', kruskal_time[0], kruskal_time[1], kruskal_time[2], kruskal_time[3], kruskal_time[4], kruskal_time[5], kruskal_time[6], kruskal_time[7]])
+    table = PrettyTable(['Name/Nodes', '100', '200', '300', '400', '500', '600', '700', '800', '900','1000'])
+    table.add_row(['Prim', prim_time[0], prim_time[1], prim_time[2], prim_time[3], prim_time[4], prim_time[5], prim_time[6], prim_time[7], prim_time[8], prim_time[9]])
+    table.add_row(['Kruskal', kruskal_time[0], kruskal_time[1], kruskal_time[2], kruskal_time[3], kruskal_time[4], kruskal_time[5], kruskal_time[6], kruskal_time[7], kruskal_time[8], kruskal_time[9]])
     print(table)
 
     plt.plot(sizes, prim_time, label='Prim', color = 'red')
